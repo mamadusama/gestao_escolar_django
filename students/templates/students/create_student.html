@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+
+{% load meus_filtros %}
+
+{% block title %}
+Cadastro de Aluno
+{% endblock title %}
+
+{% block content %}
+<div class="box box-primary">
+    <div class="box-header with-border text-center">
+        <h3 class="box-title">Cadastro de Aluno</h3>
+    </div>
+
+    <div class="box-body">
+        <form method="POST" enctype="multipart/form-data" style="padding-top: 10px;">
+            {% csrf_token %}
+
+            <!-- Exibição de erros gerais -->
+            {% if student_form.non_field_errors or user_student_form.non_field_errors or parent_form.non_field_errors or user_parent_form.non_field_errors %}
+                <div class="alert alert-danger">
+                    <ul>
+                        {% for error in student_form.non_field_errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                        {% for error in user_student_form.non_field_errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                        {% for error in parent_form.non_field_errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                        {% for error in user_parent_form.non_field_errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+
+            <!-- Dados do Aluno -->
+            <h3>Dados Pessoais do Aluno</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="first_name">Primeiro Nome:</label>
+                        {{ student_form.first_name|addclass:"form-control" }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="last_name">Último Nome:</label>
+                        {{ student_form.last_name|addclass:"form-control" }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="date_of_birth">Data de Nascimento:</label>
+                        {{ student_form.date_of_birth|addclass:"form-control" }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="gender">Gênero:</label>
+                        {{ student_form.gender|addclass:"form-control" }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="nationality">Nacionalidade:</label>
+                        {{ student_form.nationality|addclass:"form-control" }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="phone_number">Telemóvel:</label>
+                        {{ student_form.phone_number|addclass:"form-control" }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="email">E-mail:</label>
+                        {{ student_form.email|addclass:"form-control" }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="address">Endereço:</label>
+                        {{ student_form.address|addclass:"form-control" }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for=" city">Cidade:</label>
+                        {{ student_form.city|addclass:"form-control" }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="neighborhood">Bairro:</label>
+                        {{ student_form.neighborhood|addclass:"form-control" }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="postal_code">Código Postal:</label>
+                        {{ student_form.postal_code|addclass:"form-control" }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="profile_img">Foto de Perfil:</label>
+                        {{ student_form.profile_img|addclass:"form-control" }}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Encaregado e Usuario  -->
+            <h3>Selecione Usuarioi e Encaregado do Aluno</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="usuaro">Usuario:</label>
+                        {{ student_form.usuario|addclass:"form-control" }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="parent">Encaregado:</label>
+                        {{ student_form.parent|addclass:"form-control" }}
+                    </div>
+                </div>
+            </div>
+
+          
+
+
+
+            <!-- Botão de Cadastro -->
+            <div class="form-group text-center">
+                <input type="submit" value="Cadastrar" class="btn btn-primary btn-block" name="Cadastrar">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}

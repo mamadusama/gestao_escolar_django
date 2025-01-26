@@ -1,0 +1,78 @@
+{% extends "base.html" %} 
+
+{% block title %}
+Listagem de Estudantes
+{% endblock title %} 
+
+
+{% block content %}
+
+
+
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title bg-light-blue-active">Lista Completa dos Estudantes</h3>
+    </div>
+
+    <div class="box-body">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Apelido</th>
+                    <th>Email</th>
+                    <th>Telefone</th>
+                    <th>Número</th>
+                    <th>Usuário</th>
+                    <th>Encaregado</th>
+                    <th>Estatus</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+
+                <tr class="ativo" {% if student.is_active  %} style="background-color: #d4edda "{%else%} 
+                
+                style="background-color: #f8d7da" {% endif %} 
+                >
+                    
+                    <td><a href="{% url 'student_list_by_id' student.id %}">{{ student.first_name }}</a></td>
+                    
+                     <td>{{ student.last_name }}</td>
+                     <td>{{ student.email }}</td>
+                     <td>{{ student.phone_number }}</td>
+                     <td>{{ student.student_number }}</td>
+                     <td>{{ student.usuario }}</td>
+                     <td>{{ student.parent }}</td>
+                    <td>
+                        <span class="{% if student.is_active %}text-success{% else %}text-danger{% endif %}">
+
+                            {% if student.is_active %}
+                             <b>Ativo</b>
+                                
+                            {% else %}
+                             <b>Inativo</b>
+                            {% endif %}
+                        </span>
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-primary btn-xs">Editar</a>
+                        <a href="#" class="btn btn-danger btn-xs">Excluir</a>
+                        <a href="{% url 'student_list_by_id' student.id %}" class="btn btn-danger btn-xs">Detalhes</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <hr>
+        <a href="{% url 'create_student' %}" >
+            <button class="btn btn-primary">Cadastrar Novo Cliente</button>
+        </a>
+
+</div>
+
+
+
+
+{% endblock content %}

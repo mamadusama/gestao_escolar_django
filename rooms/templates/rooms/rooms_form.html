@@ -1,0 +1,65 @@
+{% extends "base.html" %} 
+
+{% load meus_filtros %}
+
+
+{% block title %}
+Cadastro de Sala
+{% endblock title %}
+
+{% block content %}
+<div class="box box-primary">
+    <div class="box-header with-border text-center">
+        <h3 class="box-title">Cadastro de Sala</h3>
+    </div>
+
+    <div class="box-body">
+        <form method="POST" style="padding-top: 10px;">
+            {% csrf_token %}
+
+             <!-- Exibição de erros gerais do formulário de cliente -->
+        {% if rooms_form.non_field_errors %}
+            <div class="alert alert-danger">
+                <ul>
+                    {% for error in rooms_form.non_field_errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+  
+
+            <!-- Nome da Sala -->
+            <div class="form-group">
+                {{ rooms_form.name.errors }}
+                <label for="nome">Nome: </label>
+                {{ rooms_form.name|addclass:"form-control,placeholder=Digite Nome da Sala " }}
+                
+            </div>
+
+            <!-- Localização -->
+            <div class="form-group">
+                {{ rooms_form.location.errors }}
+                <label>Localização:</label>
+                {{ rooms_form.location|addclass:"form-control, placeholder= Localização" }}
+            </div>
+
+            <!-- Capacidade -->
+            <div class="form-group">
+                {{ rooms_form.capacity.errors }}
+                <label>Capacidade:</label>
+                {{ rooms_form.capacity|addclass:"form-control , placeholder= Capacidade" }}
+                
+            </div>
+
+           
+
+            <!-- Botão de Cadastro -->
+            <div class="form-group text-center">
+                <input type="submit" value="Cadastrar" class="btn btn-primary btn-block" name="Cadastrar">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}

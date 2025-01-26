@@ -1,0 +1,59 @@
+{% extends "base.html" %} 
+
+{% block title %}
+Listagem de Clientes
+{% endblock title %} 
+
+
+{% block content %}
+
+
+
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title bg-light-blue-active">Lista dos Pais</h3>
+    </div>
+
+    <div class="box-body">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Apelido</th>
+                    <th>Telefone</th>
+                    <th>Email</th>
+                    <th>Relação</th>
+                    <th>Usuario</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for parent in parents %}
+
+                <tr>
+                    <td><a href="#">{{ parent.first_name }}</a></td>
+                    <td>{{ parent.last_name }}</td>
+                    <td>{{ parent.phone_number }}</td>
+                    <td>{{ parent.email }}</td>
+                    <td>{{ parent.relationship}}</td>
+                    <td>{{ parent.usuario}}</td>
+                    <td>
+                        <a href="#" class="btn btn-primary btn-xs">Editar</a>
+                        
+                        <a href="#" class="btn btn-danger btn-xs">Excluir</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <hr>
+        <a href="{% url 'create_parent' %}" >
+            <button class="btn btn-primary">Cadastrar Novo Pai</button>
+        </a>
+
+</div>
+
+
+
+
+{% endblock content %}

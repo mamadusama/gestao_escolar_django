@@ -1,0 +1,96 @@
+{% extends "base.html" %} 
+
+{% load meus_filtros %}
+
+
+{% block title %}
+Cadastro de Pai
+{% endblock title %}
+
+{% block content %}
+<div class="box box-primary">
+    <div class="box-header with-border text-center">
+        <h3 class="box-title">Cadastro de Pai</h3>
+    </div>
+
+    <div class="box-body">
+        <form method="POST" style="padding-top: 10px;">
+            {% csrf_token %}
+
+             <!-- Exibição de erros gerais do formulário de cliente -->
+        {% if  parent_form.non_field_errors %}
+            <div class="alert alert-danger">
+                <ul>
+                    {% for error in  parent_form.non_field_errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+  
+
+            <!-- Dados do Pai -->
+            <h3>Dados do Pai</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="first_name">Primeiro Nome:</label>
+                        {{ parent_form.first_name|addclass:"form-control" }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="last_name">Último Nome:</label>
+                        {{ parent_form.last_name|addclass:"form-control" }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="phone_number">Telefone:</label>
+                        {{ parent_form.phone_number|addclass:"form-control" }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        {{parent_form.email|addclass:"form-control" }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="relationship">Parentesco:</label>
+                        {{ parent_form.relationship|addclass:"form-control" }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="profile_img">Foto de Perfil:</label>
+                        {{ parent_form.profile_img|addclass:"form-control" }}
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="usuario">Usuario:</label>
+                        {{ parent_form.usuario|addclass:"form-control" }}
+                    </div>
+                </div>
+            </div>
+
+            
+
+            <!-- Botão de Cadastro -->
+            <div class="form-group text-center">
+                <input type="submit" value="Cadastrar" class="btn btn-primary btn-block" name="Cadastrar">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}
